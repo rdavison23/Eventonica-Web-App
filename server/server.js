@@ -13,6 +13,16 @@ app.get('/', (req, res) => {
   res.json({ message: 'Hola, from My template Express' });
 });
 
+app.get('/events', async (req, res) => {
+  try {
+    const result = await db.query('SELECT * FROM events ORDER BY id,title');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Backend running on port ${port}`);
