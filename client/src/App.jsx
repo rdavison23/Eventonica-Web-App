@@ -27,4 +27,41 @@ function App() {
   };
 }
 
+//create or update
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const update_load = { title, date, description, is_favorite };
+
+  try {
+    let response;
+
+    if (editingId) {
+      // update
+      response = await fetch(`${API_URL}/${editingId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(update_load),
+      });
+    } else {
+      // create
+      response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(update_load),
+      });
+    }
+
+    const data = await response.json();
+
+    // Refresh list
+    const updated = await fetch(API_URL).then((res) => res.json());
+    setEvents(updated);
+
+    resetForm();
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export default App;
