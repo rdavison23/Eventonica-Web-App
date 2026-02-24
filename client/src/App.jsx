@@ -1,6 +1,7 @@
 import { useEffect, useReducer, useState } from 'react';
 
 const API_URL = 'http://localhost:3000/events';
+function eventsReducer(events, action) {}
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -9,6 +10,7 @@ function App() {
   const [description, setDescription] = useState('');
   const [is_favorite, setIsFavorite] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const [eventsWithReducer, dispatch] = useReducer(eventsReducer, []);
 
   //load events
   useEffect(() => {
