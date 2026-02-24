@@ -64,4 +64,25 @@ const handleSubmit = async (e) => {
   }
 };
 
+//Delete
+const handleDelete = async (id) => {
+  try {
+    await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+
+    // Refresh list
+    setEvents(events.filter((ev) => ev.id !== id));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// Load event into Form from editing
+const startEdit = (ev) => {
+  setTitle(ev.title);
+  setDate(ev.date);
+  setDescription(ev.description);
+  setIsFavorite(ev.is_favorite);
+  setEditingId(ev.id);
+};
+
 export default App;
