@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 
 const API_URL = 'http://localhost:3000/events';
 
@@ -10,6 +10,13 @@ function eventsReducer(events, action) {
     case 'added': {
       return [...events, action.event];
     }
+
+    case 'fieldChanged': {
+      return events.map((ev) =>
+        ev.id === action.id ? { ...ev, [action.field]: action.value } : ev
+      );
+    }
+
     case 'deleted': {
       return events.filter((ev) => ev.id !== action.id);
     }
@@ -26,11 +33,11 @@ function eventsReducer(events, action) {
 function App() {
   //const [events, setEvents] = useState([]);
   const [eventsWithReducer, dispatch] = useReducer(eventsReducer, []);
-  const [title, setTitle] = useState('');
-  const [date, setDate] = useState('');
-  const [description, setDescription] = useState('');
-  const [is_favorite, setIsFavorite] = useState(false);
-  const [editingId, setEditingId] = useState(null);
+  // const [title, setTitle] = useState('');
+  // const [date, setDate] = useState('');
+  // const [description, setDescription] = useState('');
+  // const [is_favorite, setIsFavorite] = useState(false);
+  // const [editingId, setEditingId] = useState(null);
 
   //load events
   useEffect(() => {
@@ -40,26 +47,26 @@ function App() {
       .catch((err) => console.error(err));
   }, []);
 
-  const resetForm = () => {
-    setTitle('');
-    setDate('');
-    setDescription('');
-    setIsFavorite(false);
-    setEditingId(null);
-  };
+  // const resetForm = () => {
+  //   setTitle('');
+  //   setDate('');
+  //   setDescription('');
+  //   setIsFavorite(false);
+  //   setEditingId(null);
+  // };
 
   //create or update
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const update_load = { title, date, description, is_favorite };
+  const handleSubmit = async (ev) => {
+    //e.preventDefault();
+    //const update_load = { title, date, description, is_favorite };
 
     try {
-      if (editingId) {
+      if (ev.id) {
         //update
-        const response = await fetch(`${API_URL}/${editingId}`, {
+        const response = await fetch(`${API_URL}/${ev.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(update_load),
+          body: JSON.stringify(ev),
         });
         const updatedEvent = await response.json();
         dispatch({ type: 'updated', event: updatedEvent });
@@ -68,13 +75,13 @@ function App() {
         const response = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(update_load),
+          body: JSON.stringify(ev),
         });
 
         const newEvent = await response.json();
         dispatch({ type: 'added', event: newEvent });
       }
-      resetForm();
+      // resetForm();
     } catch (err) {
       console.error(err);
     }
@@ -91,19 +98,56 @@ function App() {
   };
 
   // Load event into Form from editing
-  const startEdit = (ev) => {
-    setTitle(ev.title);
-    setDate(ev.date);
-    setDescription(ev.description);
-    setIsFavorite(ev.is_favorite);
-    setEditingId(ev.id);
-  };
+  // const startEdit = (ev) => {
+  //   setTitle(ev.title);
+  //   setDate(ev.date);
+  //   setDescription(ev.description);
+  //   setIsFavorite(ev.is_favorite);
+  //   setEditingId(ev.id);
+  // };
 
   return (
     <div>
       <h1>Events</h1>
+      <ul>
+        {' '}
+        {/*  CHANGE #3 — Use eventsWithReducer */}
+        {eventsWithReducer.map((ev) => (
+          <li key={ev.id}>
+            <input
+              value={ev.title}
+              onChange={(e) =>
+                dispatch({
+                  type: 'fieldChanged',
+                  id: ev.id,
+                  field: 'title',
+                  value: e.target.value,
+                })
+              }
+            />{' '}
+            <input
+              type="date"
+              value={ev.date}
+              onChange={(e) =>
+                dispatch({
+                  type: 'fieldChanged',
+                  id: ev.id,
+                  field: 'date',
+                  value: e.target.value,
+                })
+              }
+            />
+            <button onClick={() => handleSubmit(ev)}>Save</button>
+            <button onClick={() => handleDelete(ev.id)}>Delete</button>
+          </li>
+        ))}{' '}
+      </ul>{' '}
+    </div>
+  );
+}
 
-      <form onSubmit={handleSubmit}>
+{
+  /* <form onSubmit={handleSubmit}>
         <input value={title} onChange={(e) => setTitle(e.target.value)} />
         <input
           type="date"
@@ -125,19 +169,18 @@ function App() {
         <button type="submit">
           {editingId ? 'Update Event' : 'Add Event'}
         </button>
-      </form>
+      </form> */
+}
 
-      <ul>
+{
+  /* <ul>
         {eventsWithReducer.map((ev) => (
           <li key={ev.id}>
-            <strong>{ev.title}</strong> — {ev.date}
-            <button onClick={() => startEdit(ev)}>Edit</button>
-            <button onClick={() => handleDelete(ev.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+            <input
+              value={ev.title}
+              onChange={(e) => dispatch({ type: 'fieldChanged', id: ev.id, field: 'title', value: e.target.value }) }
+            />
+            — {ev.date} */
 }
 
 export default App;
