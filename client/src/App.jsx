@@ -2,11 +2,6 @@ import { useEffect, useReducer, useState } from 'react';
 
 const API_URL = 'http://localhost:3000/events';
 
-const initialState = {
-  events: [],
-  draft: { title: '', date: '', description: '', is_favorite: false },
-};
-
 function eventsReducer(events, action) {
   switch (action.type) {
     case 'loaded': {
@@ -38,6 +33,11 @@ function eventsReducer(events, action) {
 function App() {
   //const [events, setEvents] = useState([]);
   const [eventsWithReducer, dispatch] = useReducer(eventsReducer, []);
+
+  //ui only states for New Event row
+  const [newTittle, setNewTittle] = useState('');
+  const [newDate, setNewDate] = useState('');
+
   // const [title, setTitle] = useState('');
   // const [date, setDate] = useState('');
   // const [description, setDescription] = useState('');
@@ -85,8 +85,11 @@ function App() {
 
         const newEvent = await response.json();
         dispatch({ type: 'added', event: newEvent });
+
+        //Clear ui only form
+        setNewTittle('');
+        setNewDate('');
       }
-      // resetForm();
     } catch (err) {
       console.error(err);
     }
@@ -115,8 +118,6 @@ function App() {
     <div>
       <h1>Events</h1>
       <ul>
-        {' '}
-        {/*  CHANGE #3 — Use eventsWithReducer */}
         {eventsWithReducer.map((ev) => (
           <li key={ev.id}>
             <input
