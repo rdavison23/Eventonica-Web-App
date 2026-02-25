@@ -1,6 +1,11 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 
 const API_URL = 'http://localhost:3000/events';
+
+const initialState = {
+  events: [],
+  draft: { title: '', date: '', description: '', is_favorite: false },
+};
 
 function eventsReducer(events, action) {
   switch (action.type) {
