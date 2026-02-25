@@ -117,6 +117,21 @@ function App() {
   return (
     <div>
       <h1>Events</h1>
+      <div>
+        <input
+          placeholder="New title"
+          value={newTitle}
+          onChange={(e) => setNewTitle(e.target.value)}
+        />
+
+        <input
+          type="date"
+          value={newDate}
+          onChange={(e) => setNewDate(e.target.value)}
+        />
+
+        <button onClick={() => handleSubmit({})}>Add Event</button>
+      </div>
       <ul>
         {eventsWithReducer.map((ev) => (
           <li key={ev.id}>
@@ -151,42 +166,4 @@ function App() {
     </div>
   );
 }
-
-{
-  /* <form onSubmit={handleSubmit}>
-        <input value={title} onChange={(e) => setTitle(e.target.value)} />
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <label>
-          Favorite:
-          <input
-            type="checkbox"
-            checked={is_favorite}
-            onChange={(e) => setIsFavorite(e.target.checked)}
-          />
-        </label>
-        <button type="submit">
-          {editingId ? 'Update Event' : 'Add Event'}
-        </button>
-      </form> */
-}
-
-{
-  /* <ul>
-        {eventsWithReducer.map((ev) => (
-          <li key={ev.id}>
-            <input
-              value={ev.title}
-              onChange={(e) => dispatch({ type: 'fieldChanged', id: ev.id, field: 'title', value: e.target.value }) }
-            />
-            — {ev.date} */
-}
-
 export default App;
