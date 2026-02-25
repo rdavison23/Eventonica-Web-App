@@ -9,11 +9,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// root route
-app.get('/', (req, res) => {
-  res.json({ message: 'Hola, from My template Express' });
-});
-
 // get all events
 app.get('/events', async (req, res) => {
   try {
