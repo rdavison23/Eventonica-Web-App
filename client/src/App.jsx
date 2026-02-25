@@ -35,7 +35,7 @@ function App() {
   const [eventsWithReducer, dispatch] = useReducer(eventsReducer, []);
 
   //ui only states for New Event row
-  const [newTittle, setNewTittle] = useState('');
+  const [newTitle, setNewTitle] = useState('');
   const [newDate, setNewDate] = useState('');
 
   // const [title, setTitle] = useState('');
@@ -77,17 +77,21 @@ function App() {
         dispatch({ type: 'updated', event: updatedEvent });
       } else {
         //create
+        const newEventData = {
+          title: newTitle,
+          date: newDate,
+        };
         const response = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(ev),
+          body: JSON.stringify(newEventData),
         });
 
         const newEvent = await response.json();
         dispatch({ type: 'added', event: newEvent });
 
         //Clear ui only form
-        setNewTittle('');
+        setNewTitle('');
         setNewDate('');
       }
     } catch (err) {
@@ -158,7 +162,7 @@ function App() {
                 })
               }
             />
-            <button onClick={() => handleSubmit(ev)}>Save</button>
+            <button onClick={() => handleSubmit(ev)}>Add Event</button>
             <button onClick={() => handleDelete(ev.id)}>Delete</button>
           </li>
         ))}{' '}
