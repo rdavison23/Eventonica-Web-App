@@ -137,7 +137,7 @@ function App() {
         />
 
         <input
-          type="date"
+          type="datetime-local"
           value={newDate}
           onChange={(e) => setNewDate(e.target.value)}
         />
@@ -176,7 +176,7 @@ function App() {
             />
 
             <input
-              type="date"
+              type="datetime-local"
               value={ev.date}
               onChange={(e) =>
                 dispatch({
