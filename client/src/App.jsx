@@ -37,6 +37,8 @@ function App() {
   //ui only states for New Event row
   const [newTitle, setNewTitle] = useState('');
   const [newDate, setNewDate] = useState('');
+  const [newDescription, setNewDescription] = useState('');
+  const [newIsFavorite, setNewIsFavorite] = useState(false);
 
   // const [title, setTitle] = useState('');
   // const [date, setDate] = useState('');
@@ -80,6 +82,8 @@ function App() {
         const newEventData = {
           title: newTitle,
           date: newDate,
+          description: newDescription
+          is_favorite: newIsFavorite
         };
         const response = await fetch(API_URL, {
           method: 'POST',
@@ -93,6 +97,8 @@ function App() {
         //Clear ui only form
         setNewTitle('');
         setNewDate('');
+        setNewDescription('')
+        setNewIsFavorite(false)
       }
     } catch (err) {
       console.error(err);
@@ -121,6 +127,8 @@ function App() {
   return (
     <div>
       <h1>Events</h1>
+
+      {/* NEW EVENT ROW */}
       <div>
         <input
           placeholder="New title"
@@ -136,6 +144,7 @@ function App() {
 
         <button onClick={() => handleSubmit({})}>Add Event</button>
       </div>
+
       <ul>
         {eventsWithReducer.map((ev) => (
           <li key={ev.id}>
@@ -149,7 +158,8 @@ function App() {
                   value: e.target.value,
                 })
               }
-            />{' '}
+            />
+
             <input
               type="date"
               value={ev.date}
@@ -162,11 +172,12 @@ function App() {
                 })
               }
             />
-            <button onClick={() => handleSubmit(ev)}>Add Event</button>
+
+            <button onClick={() => handleSubmit(ev)}>Save</button>
             <button onClick={() => handleDelete(ev.id)}>Delete</button>
           </li>
-        ))}{' '}
-      </ul>{' '}
+        ))}
+      </ul>
     </div>
   );
 }
