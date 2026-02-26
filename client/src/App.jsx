@@ -1,4 +1,5 @@
 import { useEffect, useReducer, useState } from 'react';
+import './App.css';
 
 const API_URL = 'http://localhost:3000/events';
 
@@ -177,7 +178,7 @@ function App() {
 
             <input
               type="datetime-local"
-              value={ev.date}
+              value={ev.date ? ev.date.slice(0, 16) : ''}
               onChange={(e) =>
                 dispatch({
                   type: 'fieldChanged',
