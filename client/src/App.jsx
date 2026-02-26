@@ -130,7 +130,7 @@ function App() {
       <h1>Events</h1>
 
       {/* NEW EVENT ROW */}
-      <div>
+      <div id="new-event">
         <input
           placeholder="New title"
           value={newTitle}
