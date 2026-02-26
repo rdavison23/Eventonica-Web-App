@@ -27,3 +27,16 @@ h1 {
   border-radius: 6px;
   font-size: 14px;
 }
+
+#new-event button {
+  padding: 10px 15px;
+  background: rgb(255, 255, 255);
+  color: rgb(37, 35, 35);
+  border: 2px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#new-event button:hover {
+  background: rgb(215, 138, 138);
+}
