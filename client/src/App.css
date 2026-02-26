@@ -40,3 +40,8 @@ h1 {
 #new-event button:hover {
   background: rgb(215, 138, 138);
 }
+
+ul {
+  list-style: none;
+  padding: 20;
+}
