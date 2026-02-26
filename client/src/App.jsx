@@ -142,6 +142,21 @@ function App() {
           onChange={(e) => setNewDate(e.target.value)}
         />
 
+        <textarea 
+        placeholder=" New Description"
+        value={newDescription}
+        onChange={(e)=> setNewDescription(e.target.value)}
+        />
+
+      <label>
+        Favorite:
+        <input
+        type="checkbox" 
+        checked={newIsFavorite} 
+        onChange={(e) => setNewIsFavorite(e.target.checked)}
+        />
+      </label>
+
         <button onClick={() => handleSubmit({})}>Add Event</button>
       </div>
 
