@@ -82,8 +82,8 @@ function App() {
         const newEventData = {
           title: newTitle,
           date: newDate,
-          description: newDescription
-          is_favorite: newIsFavorite
+          description: newDescription,
+          is_favorite: newIsFavorite,
         };
         const response = await fetch(API_URL, {
           method: 'POST',
@@ -97,8 +97,8 @@ function App() {
         //Clear ui only form
         setNewTitle('');
         setNewDate('');
-        setNewDescription('')
-        setNewIsFavorite(false)
+        setNewDescription('');
+        setNewIsFavorite(false);
       }
     } catch (err) {
       console.error(err);
@@ -142,20 +142,20 @@ function App() {
           onChange={(e) => setNewDate(e.target.value)}
         />
 
-        <textarea 
-        placeholder=" New Description"
-        value={newDescription}
-        onChange={(e)=> setNewDescription(e.target.value)}
+        <textarea
+          placeholder=" New Description"
+          value={newDescription}
+          onChange={(e) => setNewDescription(e.target.value)}
         />
 
-      <label>
-        Favorite:
-        <input
-        type="checkbox" 
-        checked={newIsFavorite} 
-        onChange={(e) => setNewIsFavorite(e.target.checked)}
-        />
-      </label>
+        <label>
+          Favorite:
+          <input
+            type="checkbox"
+            checked={newIsFavorite}
+            onChange={(e) => setNewIsFavorite(e.target.checked)}
+          />
+        </label>
 
         <button onClick={() => handleSubmit({})}>Add Event</button>
       </div>
@@ -183,6 +183,18 @@ function App() {
                   type: 'fieldChanged',
                   id: ev.id,
                   field: 'date',
+                  value: e.target.value,
+                })
+              }
+            />
+
+            <textarea
+              value={ev.description || ''}
+              onChange={(e) =>
+                dispatch({
+                  type: 'fieldChanged',
+                  id: ev.id,
+                  field: 'description',
                   value: e.target.value,
                 })
               }
