@@ -161,7 +161,7 @@ function App() {
         <button onClick={() => handleSubmit({})}>Add Event</button>
       </div>
 
-      <ul>
+      <ul id="eventList">
         {eventsWithReducer.map((ev) => (
           <li key={ev.id}>
             <input
