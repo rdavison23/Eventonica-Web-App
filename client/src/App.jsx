@@ -204,9 +204,16 @@ function App() {
               Favorite:
               <input
                 type="checkbox"
-                checked={newIsFavorite}
-                onChange={(e) => setNewIsFavorite(e.target.checked)}
-              />
+                checked={!!ev.is_favorite}
+                onChange={(e) =>
+                  dispatch({
+                    type: 'fieldChanged',
+                    id: ev.id,
+                    field: 'is_favorite',
+                    value: e.target.checked,
+                  })
+                }
+              />{' '}
             </label>
 
             <button onClick={() => handleSubmit(ev)}>Save</button>
