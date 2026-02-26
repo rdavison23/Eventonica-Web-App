@@ -200,6 +200,15 @@ function App() {
               }
             />
 
+            <label>
+              Favorite:
+              <input
+                type="checkbox"
+                checked={newIsFavorite}
+                onChange={(e) => setNewIsFavorite(e.target.checked)}
+              />
+            </label>
+
             <button onClick={() => handleSubmit(ev)}>Save</button>
             <button onClick={() => handleDelete(ev.id)}>Delete</button>
           </li>
