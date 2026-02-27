@@ -179,14 +179,15 @@ function App() {
             <input
               type="datetime-local"
               value={ev.date ? ev.date.slice(0, 16) : ''}
-              onChange={(e) =>
+              onChange={(e) => {
+                console.log(e.target.value);
                 dispatch({
                   type: 'fieldChanged',
                   id: ev.id,
                   field: 'date',
                   value: e.target.value,
-                })
-              }
+                });
+              }}
             />
 
             <textarea
