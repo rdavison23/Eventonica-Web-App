@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div id="eventonica">
+    <div id="eventonica" className="centered">
       {' '}
       <h1>Eventonica</h1>
       <button>

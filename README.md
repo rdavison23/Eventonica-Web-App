@@ -50,8 +50,27 @@ The Events page uses:
 - Inline editing for each event
 - A separate “New Event” row for creating events
 
+Reducer Actions:
+
 - Action: loaded ---------------- Description: Load events from backend
 - Action:added ---------------- Description: Add new event
 - Action:fieldChanged ---------------- Description: Update a single field inline
 - Action: updated ---------------- Description: Save updated event to backend
 - Action: deleted ---------------- Description: Remove event
+
+# Backend API Documentation
+
+- GET /events: Returns all events.
+- GET /events/:id: Returns a single event by ID.
+- POST /events: Creates a new event.
+- PUT /events/:id: Updates an event.
+- DELETE /events/:id: Deletes an event.
+
+# Future Enhancements
+
+- Add filtering (favorites, upcoming events)
+- Add sorting by date
+- Add event categories
+- Add user authentication
+- Add a dedicated Event Details page
+- Deploy frontend + backend to cloud
