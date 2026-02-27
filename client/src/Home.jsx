@@ -1,9 +1,12 @@
 export default function Home() {
   return (
-    <div>
+    <div id="eventonica">
       {' '}
-      <h1>Welcome!</h1> <p>This is the home page.</p>{' '}
-      <a href="/events">Go to Events</a>{' '}
+      <h1>Eventonica</h1>
+      <button>
+        {' '}
+        <a href="/events"> Create Events</a>{' '}
+      </button>
     </div>
   );
 }
