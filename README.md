@@ -49,3 +49,9 @@ The Events page uses:
 - useEffect to load events
 - Inline editing for each event
 - A separate “New Event” row for creating events
+
+- Action: loaded ---------------- Description: Load events from backend
+- Action:added ---------------- Description: Add new event
+- Action:fieldChanged ---------------- Description: Update a single field inline
+- Action: updated ---------------- Description: Save updated event to backend
+- Action: deleted ---------------- Description: Remove event
