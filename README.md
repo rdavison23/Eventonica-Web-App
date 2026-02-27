@@ -36,3 +36,16 @@ Backend
 - dotenv
 - CORS
 - Backend runs at: http://localhost:3000
+
+# React Router Setup
+
+- app.jsx Browser Router
+- Home Page: Simple landing page with navigation
+- Events Page (CRUD UI)
+
+The Events page uses:
+
+- useReducer for event state
+- useEffect to load events
+- Inline editing for each event
+- A separate “New Event” row for creating events
