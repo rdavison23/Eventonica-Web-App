@@ -15,3 +15,24 @@ This project demonstrates clean architecture, modern React patterns, and a fully
 - Delete events
 - Mark events as favorites
 - Navigate between pages using React Router
+
+# Tech Stack
+
+Frontend
+
+- React
+- React Router
+- useReducer for state management
+- Fetch API
+- CSS
+- Frontend runs at:http://localhost:5173
+
+Backend
+
+- Node.js
+- Express
+- PostgreSQL
+- pg (connection pool)
+- dotenv
+- CORS
+- Backend runs at: http://localhost:3000
