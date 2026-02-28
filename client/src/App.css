@@ -10,9 +10,35 @@ body {
   height: 100vh;
   box-sizing: border-box;
 }
-#eventonica {
-  font-size: 40px;
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   text-align: center;
+  background: linear-gradient(135deg, #e7c4c4, #d19a9ac2);
+  color: #3b2b2b;
+  padding: 20px;
+}
+
+.home-button {
+  background: #ffffff;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #5a3a3a;
+  font-size: 20px;
+  font-weight: bold;
+  transition: 0.25s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.home-button:hover {
+  background: #f3d1d1;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  color: #5a3a3a;
 }
 
 #eventonica {
@@ -29,7 +55,8 @@ button {
 
 h1 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  color: #3b2b2b;
   display: flex;
   flex-direction: column;
 }
