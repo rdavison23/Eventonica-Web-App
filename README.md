@@ -7,6 +7,10 @@ It includes a React frontend with client‑side routing and reducer‑based stat
 
 This project demonstrates clean architecture, modern React patterns, and a fully functional API layer.
 
+![alt text](<Screenshot 2026-02-27 at 16.23.28.png>)
+
+![alt text](<Screenshot 2026-02-27 at 16.24.57.png>)
+
 # Overview
 
 - Create new events
