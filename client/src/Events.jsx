@@ -41,12 +41,6 @@ function App() {
   const [newDescription, setNewDescription] = useState('');
   const [newIsFavorite, setNewIsFavorite] = useState(false);
 
-  // const [title, setTitle] = useState('');
-  // const [date, setDate] = useState('');
-  // const [description, setDescription] = useState('');
-  // const [is_favorite, setIsFavorite] = useState(false);
-  // const [editingId, setEditingId] = useState(null);
-
   //load events
   useEffect(() => {
     fetch(API_URL)
@@ -55,19 +49,8 @@ function App() {
       .catch((err) => console.error(err));
   }, []);
 
-  // const resetForm = () => {
-  //   setTitle('');
-  //   setDate('');
-  //   setDescription('');
-  //   setIsFavorite(false);
-  //   setEditingId(null);
-  // };
-
   //create or update
   const handleSubmit = async (ev) => {
-    //e.preventDefault();
-    //const update_load = { title, date, description, is_favorite };
-
     try {
       if (ev.id) {
         //update
@@ -115,15 +98,6 @@ function App() {
       console.error(err);
     }
   };
-
-  // Load event into Form from editing
-  // const startEdit = (ev) => {
-  //   setTitle(ev.title);
-  //   setDate(ev.date);
-  //   setDescription(ev.description);
-  //   setIsFavorite(ev.is_favorite);
-  //   setEditingId(ev.id);
-  // };
 
   return (
     <div>
